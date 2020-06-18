@@ -1,18 +1,37 @@
 const fifaData = require('./fifa.js');
-console.log(fifaData);
+// console.log(fifaData);
 
 console.log('its working');
 // ⚽️ M  V P ⚽️ //
 
 /* Task 1: Investigate the data above. Practice accessing data by console.log-ing the following pieces of data*/
 
-console.log('(a) Home Team name for 2014 world cup final');
-console.log(fifaData.find(item => {return(fifaData.Year == 2014 && fifaData.Stage =="Final")})["Home Team Name"]});
-// console.log(fifaData)
-'(b) Away Team name for 2014 world cup final'
-'(c) Home Team goals for 2014 world cup final'
-'(d) Away Team goals for 2014 world cup final'
-'(e) Winner of 2014 world cup final */'
+console.log('The Home Team name for 2014 world cup final is: ');
+console.log(fifaData.find(item => (item.Year === 2014 && item.Stage === "Final"))["Home Team Name"]);
+
+console.log("\nThe Away Team name for 2014 world cup final is: ");
+console.log(fifaData.find(item => (item.Year === 2014 && item.Stage === "Final"))["Away Team Name"]);
+
+
+console.log("The Home Team goals for 2014 world cup final are: ");
+console.log(fifaData.find(item => (item.Year === 2014 && item.Stage === "Final"))["Home Team Goals"]);
+
+console.log("The Away Team goals for 2014 world cup final are: ");
+console.log(fifaData.find(item => (item.Year === 2014 && item.Stage === "Final"))["Away Team Goals"]);
+
+console.log("\nThe Winner of 2014 world cup final is: ");
+function findWinner(data, year, stage){
+    let winner = data.find(item => (item.Year === year && item.Stage === stage))
+    if(winner["Home Team Goals"] > winner["Away Team Goals"]){
+        return(winner["Home Team Name"]);
+    }else if(winner["Home Team Goals"] < winner["Away Team Goals"]){
+        return(winner["Away Team Name"]);
+    }else {
+        return "Tie";
+    }
+}
+console.log(findWinner(fifaData, 2014, "Final"));
+
 
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
